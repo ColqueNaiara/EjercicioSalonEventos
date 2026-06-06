@@ -1,6 +1,6 @@
 ﻿namespace EjSalonEventos
 {
-    internal class Reserva
+    public class Reserva
     {
         private const int PrecioSalonHora = 6000;
         private const int PrecioMozo = 3000;

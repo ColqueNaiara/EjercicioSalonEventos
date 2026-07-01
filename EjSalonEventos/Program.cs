@@ -1,43 +1,52 @@
 ﻿using EjSalonEventos;
 
-Reserva reserva = new Reserva();
-
 Console.WriteLine("Tipo de reserva: ");
 Console.WriteLine("1. Solo Evento");
 Console.WriteLine("2. Con Catering");
 Console.WriteLine("3. Full");
-reserva.TipoReserva = Convert.ToInt32(Console.ReadLine());
+int tipoReserva = Convert.ToInt32(Console.ReadLine());
 
 Console.Write("Nombre del cliente: ");
-reserva.NombreCliente = Console.ReadLine();
+string nombreCliente = Console.ReadLine();
 
 Console.Write("Cantidad de invitados: ");
-reserva.CantidadInvitados = Convert.ToInt32(Console.ReadLine());
+int cantidadInvitados = Convert.ToInt32(Console.ReadLine());
 
 Console.Write("Cantidad de horas: ");
-reserva.CantidadHoras = Convert.ToInt32(Console.ReadLine());
+int cantidadHoras = Convert.ToInt32(Console.ReadLine());
 
 Console.Write("¿Incluye mozos? (S/N): ");
-reserva.IncluyeMozos = Console.ReadLine().ToUpper() == "S";
+bool incluyeMozos = Console.ReadLine().ToUpper() == "S";
 
 Console.Write("Día (V/S/D): ");
-reserva.Dia = char.Parse(Console.ReadLine().ToUpper());
+char dia = char.Parse(Console.ReadLine().ToUpper());
 
-reserva.TipoMenu = 'N';
+char tipoMenu = 'N';
 
-if (reserva.TipoReserva == 2 || reserva.TipoReserva == 3)
+if (tipoReserva == 2 || tipoReserva == 3)
 {
     Console.Write("Tipo de menú (B/P): ");
-    reserva.TipoMenu = char.Parse(Console.ReadLine().ToUpper());
+    tipoMenu = char.Parse(Console.ReadLine().ToUpper());
 }
 
-if (reserva.TipoReserva == 3)
+int cantidadAnimaciones = 0;
+
+if (tipoReserva == 3)
 {
     Console.Write("Cantidad de animaciones: ");
-    reserva.CantidadAnimaciones = int.Parse(Console.ReadLine());
+    cantidadAnimaciones = Convert.ToInt32(Console.ReadLine());
 }
 
-string resumen = reserva.ObtenerResumen();
+Reserva reserva = new Reserva(
+    nombreCliente,
+    cantidadInvitados,
+    cantidadHoras,
+    incluyeMozos,
+    dia,
+    tipoReserva,
+    tipoMenu,
+    cantidadAnimaciones
+);
+
 Console.WriteLine();
-Console.WriteLine(resumen);
-        
+Console.WriteLine(reserva.ObtenerResumen());

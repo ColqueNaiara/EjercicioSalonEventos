@@ -20,7 +20,11 @@
         public string NombreCliente
         {
             get { return _nombreCliente; }
-            set { _nombreCliente = value; }
+            set 
+            {
+                if(!string.IsNullOrEmpty(value))
+                    _nombreCliente = value;
+            }
         }
 
         public int CantidadInvitados
@@ -64,7 +68,17 @@
             get { return _cantidadAnimaciones; }
             set { _cantidadAnimaciones = value; }
         }
-
+        public Reserva(string nombreCliente, int cantidadInvitados, int cantidadHoras, bool incluyeMozos, char dia, int tipoReserva, char tipoMenu, int cantidadAnimaciones)
+        {
+            NombreCliente = nombreCliente;
+            CantidadInvitados = cantidadInvitados;
+            CantidadHoras = cantidadHoras;
+            IncluyeMozos = incluyeMozos;
+            Dia = dia;
+            TipoReserva = tipoReserva;
+            TipoMenu = tipoMenu;
+            CantidadAnimaciones = cantidadAnimaciones;
+        }
         public int CalcularValor()
         {
             double total = CantidadHoras * PrecioSalonHora;
